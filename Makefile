@@ -63,11 +63,13 @@ clean:
 	@rm -rf $(BUILD_DIR) $(COVERAGE_FILE)
 	@echo "Clean complete"
 
-# Install binary to $GOPATH/bin
-install: build
-	@echo "Installing $(BINARY_NAME) to $$GOPATH/bin..."
+# Install local binary to $GOPATH/bin
+install:
+	@echo "Installing local $(BINARY_NAME) to $$GOPATH/bin..."
 	@go install $(MAIN_PATH)
 	@echo "Installed successfully"
+	@which feed-cli
+	@feed-cli --version
 
 # Tidy dependencies
 tidy:
@@ -99,23 +101,32 @@ vet:
 check: fmt vet test
 	@echo "All checks passed!"
 
+# Install from GitHub (test public install)
+install-from-github:
+	@echo "Installing from GitHub..."
+	@go install github.com/robertmeta/feed-cli/cmd/feed-cli@latest
+	@echo "Installed! Testing..."
+	@which feed-cli
+	@feed-cli --version
+
 # Help
 help:
 	@echo "feed-cli Makefile targets:"
-	@echo "  make build          - Build the binary"
-	@echo "  make test           - Run all tests"
-	@echo "  make test-unit      - Run unit tests only"
-	@echo "  make test-model     - Run model tests"
-	@echo "  make test-store     - Run store tests"
-	@echo "  make test-feed      - Run feed tests"
-	@echo "  make test-coverage  - Run tests with coverage"
-	@echo "  make coverage-html  - View coverage in browser"
-	@echo "  make lint           - Run linter"
-	@echo "  make clean          - Clean build artifacts"
-	@echo "  make install        - Install to GOPATH/bin"
-	@echo "  make tidy           - Tidy dependencies"
-	@echo "  make deps           - Download dependencies"
-	@echo "  make fmt            - Format code"
-	@echo "  make vet            - Vet code"
-	@echo "  make check          - Format, vet, and test"
-	@echo "  make help           - Show this help message"
+	@echo "  make build               - Build the binary"
+	@echo "  make test                - Run all tests"
+	@echo "  make test-unit           - Run unit tests only"
+	@echo "  make test-model          - Run model tests"
+	@echo "  make test-store          - Run store tests"
+	@echo "  make test-feed           - Run feed tests"
+	@echo "  make test-coverage       - Run tests with coverage"
+	@echo "  make coverage-html       - View coverage in browser"
+	@echo "  make lint                - Run linter"
+	@echo "  make clean               - Clean build artifacts"
+	@echo "  make install             - Install to GOPATH/bin (local)"
+	@echo "  make install-from-github - Install from GitHub (test public install)"
+	@echo "  make tidy                - Tidy dependencies"
+	@echo "  make deps                - Download dependencies"
+	@echo "  make fmt                 - Format code"
+	@echo "  make vet                 - Vet code"
+	@echo "  make check               - Format, vet, and test"
+	@echo "  make help                - Show this help message"

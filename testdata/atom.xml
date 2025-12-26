@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Test Atom Feed</title>
+  <link href="https://example.com/atom" rel="self"/>
+  <link href="https://example.com"/>
+  <id>https://example.com/atom</id>
+  <updated>2024-12-26T12:00:00Z</updated>
+  <subtitle>A test Atom 1.0 feed for feed-cli</subtitle>
+
+  <entry>
+    <title>First Atom Entry</title>
+    <link href="https://example.com/atom-entry-1"/>
+    <id>atom-entry-1</id>
+    <updated>2024-12-26T10:00:00Z</updated>
+    <published>2024-12-26T10:00:00Z</published>
+    <summary>This is the first Atom test entry.</summary>
+    <content type="html">&lt;p&gt;This is the first Atom test entry with HTML content.&lt;/p&gt;</content>
+    <author>
+      <name>Test Author</name>
+      <email>test@example.com</email>
+    </author>
+  </entry>
+
+  <entry>
+    <title>Second Atom Entry</title>
+    <link href="https://example.com/atom-entry-2"/>
+    <id>atom-entry-2</id>
+    <updated>2024-12-25T15:30:00Z</updated>
+    <published>2024-12-25T15:30:00Z</published>
+    <summary>This is the second Atom test entry.</summary>
+    <content type="html">&lt;p&gt;Second entry content.&lt;/p&gt;</content>
+  </entry>
+</feed>
